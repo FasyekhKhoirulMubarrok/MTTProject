@@ -12,6 +12,7 @@ class PemainActivity : AppCompatActivity() {
         val pemain1 = "pemain1"
         val pemain2 = "pemain2"
         val tipeSoal ="tipeSoal"
+        var codeInput = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
