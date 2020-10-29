@@ -12,7 +12,6 @@ class PemainActivity : AppCompatActivity() {
         val pemain1 = "pemain1"
         val pemain2 = "pemain2"
         val tipeSoal ="tipeSoal"
-        val test1 = "sas"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
