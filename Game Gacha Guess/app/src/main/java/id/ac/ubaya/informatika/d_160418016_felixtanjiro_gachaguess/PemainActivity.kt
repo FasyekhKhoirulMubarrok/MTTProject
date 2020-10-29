@@ -17,5 +17,14 @@ class PemainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pemain)
+
+        buttonGachaGuess.setOnClickListener {
+            val pemain = Intent(this, MainActivity::class.java)
+            pemain.putExtra(pemain1, editTextTextPersonName1.text.toString())
+            pemain.putExtra(pemain2, editTextTextPersonName2.text.toString())
+            pemain.putExtra(tipeSoal, spinnerKategori.selectedItem.toString())
+            startActivity(pemain)
+            finish()
+        }
     }
 }
