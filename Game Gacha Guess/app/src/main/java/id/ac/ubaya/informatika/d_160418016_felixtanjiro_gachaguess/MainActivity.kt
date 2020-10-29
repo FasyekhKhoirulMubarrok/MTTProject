@@ -16,6 +16,10 @@ class MainActivity : AppCompatActivity() {
         val skor = "skor"
     }
 
+    lateinit var pemain : Pemain
+    lateinit var pemain1 : Pemain
+    lateinit var pemain2 : Pemain
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
