@@ -12,11 +12,14 @@ class PemainActivity : AppCompatActivity() {
         val pemain1 = "pemain1"
         val pemain2 = "pemain2"
         val tipeSoal ="tipeSoal"
-        var codeInput = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pemain)
+
+        val adapter = ArrayAdapter(this, R.layout.my_spinner_layout, Global.tipeKategoriSoal)
+        adapter.setDropDownViewResource(R.layout.my_spinner_item_layout)
+        spinnerKategori.adapter = adapter
     }
 }
