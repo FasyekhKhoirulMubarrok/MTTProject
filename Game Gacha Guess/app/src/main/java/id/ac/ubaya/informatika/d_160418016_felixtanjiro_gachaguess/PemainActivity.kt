@@ -28,6 +28,10 @@ class PemainActivity : AppCompatActivity() {
                 startActivity(pemain)
                 finish()
             }
+            else
+            {
+                Toast.makeText(this, "Masukkan Nama Pemain Terlebih Dahulu", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
