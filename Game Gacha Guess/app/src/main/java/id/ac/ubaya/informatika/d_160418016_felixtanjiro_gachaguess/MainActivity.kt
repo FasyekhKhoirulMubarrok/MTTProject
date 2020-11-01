@@ -27,5 +27,7 @@ class MainActivity : AppCompatActivity() {
         pemain2 = Pemain(intent.getStringExtra(PemainActivity.pemain2).toString(),skorPemain2)
         tipeSoal = intent.getStringExtra(PemainActivity.tipeSoal).toString()
         textViewKategori.text = tipeSoal
+        pemain = pemain1
+        gantiGiliran(pemain1)
     }
 }
