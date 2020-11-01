@@ -18,11 +18,10 @@ class PemainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pemain)
 
-<<<<<<< HEAD
         val adapter = ArrayAdapter(this, R.layout.my_spinner_layout, Global.tipeKategoriSoal)
         adapter.setDropDownViewResource(R.layout.my_spinner_item_layout)
         spinnerKategori.adapter = adapter
-=======
+
         buttonGachaGuess.setOnClickListener {
             if(editTextTextPersonName1.text.isNotEmpty() && editTextTextPersonName2.text.isNotEmpty())
             {
@@ -38,6 +37,5 @@ class PemainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Masukkan Nama Pemain Terlebih Dahulu", Toast.LENGTH_SHORT).show()
             }
         }
->>>>>>> kirim-data-pemain
     }
 }
