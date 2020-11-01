@@ -20,6 +20,19 @@ class MainActivity : AppCompatActivity() {
     lateinit var pemain1 : Pemain
     lateinit var pemain2 : Pemain
 
+    var skorPemain1 = 0
+    var skorPemain2 = 0
+    var tipeSoal = ""
+    var random = 0
+    var garisBantuJawaban = ""
+
+    var randSkorGacha = 0
+    var tick = 0
+    var tebakanBenar = 0
+    var skorGacha = 0
+    lateinit var countTebak : CountDownTimer
+    lateinit var countGachaAntiCurang : CountDownTimer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
