@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        pemain1 = Pemain(intent.getStringExtra(PemainActivity.pemain1).toString(), skorPemain1)
+        pemain2 = Pemain(intent.getStringExtra(PemainActivity.pemain2).toString(),skorPemain2)
+        tipeSoal = intent.getStringExtra(PemainActivity.tipeSoal).toString()
+        textViewKategori.text = tipeSoal
     }
 }
