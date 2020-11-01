@@ -29,5 +29,8 @@ class MainActivity : AppCompatActivity() {
         textViewKategori.text = tipeSoal
         pemain = pemain1
         gantiGiliran(pemain1)
+        val pertanyaan = kumpulanSoal(tipeSoal)
+        random = Random.nextInt(0,pertanyaan.count())
+        textViewHint.text = pertanyaan[random].soal
     }
 }
