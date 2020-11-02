@@ -26,6 +26,26 @@ class MainActivity : AppCompatActivity() {
     var random = 0
     var garisBantuJawaban = ""
 
+    var gambarSkorGacha = arrayOf(
+        R.drawable.szonk,
+        R.drawable.szonk,
+        R.drawable.s100,
+        R.drawable.s100,
+        R.drawable.s100,
+        R.drawable.s100,
+        R.drawable.s100,
+        R.drawable.s200,
+        R.drawable.s200,
+        R.drawable.s200,
+        R.drawable.s200,
+        R.drawable.s500,
+        R.drawable.s500,
+        R.drawable.s500,
+        R.drawable.s1000,
+        R.drawable.s1000,
+        R.drawable.s2500
+    )
+
     var randSkorGacha = 0
     var tick = 0
     var tebakanBenar = 0
