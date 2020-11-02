@@ -20,9 +20,33 @@ class MainActivity : AppCompatActivity() {
     lateinit var pemain1 : Pemain
     lateinit var pemain2 : Pemain
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
+    fun skorGachaFun(idx: Int)
+    {
+        if(idx in 2 until 7)
+        {
+            skorGacha = 100
+        }
+        else if(idx in 7 until 11)
+        {
+            skorGacha = 200
+        }
+        else if(idx in 11 until 14)
+        {
+            skorGacha = 500
+        }
+        else if(idx in 14 until 16)
+        {
+            skorGacha = 1000
+        }
+        else if(idx == 16)
+        {
+            skorGacha = 2500
+        }
     }
 }
