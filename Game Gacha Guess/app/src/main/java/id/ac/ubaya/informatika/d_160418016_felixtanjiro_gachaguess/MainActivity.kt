@@ -25,4 +25,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
     }
+
+    fun kumpulanSoal(kategori:String): Array<Soal> {
+        val kumpulanPertanyaan:Array<Soal>
+        if(kategori == "Hewan"){
+            kumpulanPertanyaan = arrayOf(
+                Soal("Hewan yang memiliki belalai", "gajah"),
+                Soal("Hewan yang bernafas menggunakan insang", "ikan"),
+                Soal("Hewan yang tidur di siang hari", "kelelawar")
+            )
+        }
+        else if(kategori == "Makanan"){
+            kumpulanPertanyaan = arrayOf(
+                Soal("Makanan khas lebaran", "ketupat"),
+                Soal("Makanan yang bisa jadi ironman", "odading"),
+                Soal("Makanan yang dipercaya bikin panjang umur", "mie")
+            )
+        }
+        else{
+            kumpulanPertanyaan = arrayOf(
+                Soal("Sebutan untuk kota pahlawan", "surabaya"),
+                Soal("Sebutan untuk kota lautan api", "bandung"),
+                Soal("Ibukota negara Indonesia", "jakarta")
+            )
+        }
+        return kumpulanPertanyaan
+    }
 }
