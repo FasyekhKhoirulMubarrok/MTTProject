@@ -25,4 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
     }
+    fun gantiGiliran(giliran: Pemain){
+        textViewGiliran.text = giliran.nama
+        textViewScore.text = giliran.skor.toString()
+        progressBarWaktu.setProgress(100)
+        textViewWaktu.text = 10.toString()
+        editTextTebak.setText("")
+    }
 }
