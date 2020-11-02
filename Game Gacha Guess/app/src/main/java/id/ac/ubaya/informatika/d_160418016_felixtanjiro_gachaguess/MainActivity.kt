@@ -42,5 +42,13 @@ class MainActivity : AppCompatActivity() {
             garisBantuJawaban += "_ "
         }
         textViewJawaban.text = garisBantuJawaban
+
+        var cekJawaban = CharArray(pertanyaan[random].jawaban.toCharArray().size)
+        var tampilJawaban = pertanyaan[random].jawaban.toCharArray().joinToString(separator = "").toCharArray()
+
+        imageViewNilai.setImageResource(gambarSkorGacha[0])
+
+        editTextTebak.isEnabled = false;
+        buttonGuess.isEnabled = false;
     }
 }
