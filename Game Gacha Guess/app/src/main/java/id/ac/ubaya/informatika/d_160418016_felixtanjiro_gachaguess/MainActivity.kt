@@ -24,5 +24,60 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        buttonGacha.setOnClickListener {
+            countGachaAntiCurang.cancel()
+            editTextTebak.setText("")
+            editTextTebak.isFocusable = true
+            val countGacha = object: CountDownTimer(3000, 100){
+                override fun onTick(p0: Long) {
+                    randSkorGacha = Random.nextInt(0, gambarSkorGacha.count())
+                    imageViewNilai.setImageResource(gambarSkorGacha[randSkorGacha])
+                }
+                override fun onFinish() {
+                    randSkorGacha = Random.nextInt(0, gambarSkorGacha.count())
+                    imageViewNilai.setImageResource(gambarSkorGacha[randSkorGacha])
+                    skorGachaFun(randSkorGacha)
+
+                    if(randSkorGacha == 0 || randSkorGacha == 1)
+                    {
+                        textViewKondisi.text = "Ganti giliran!"
+                        pemain.skor = 0
+                        if(pemain == pemain1)
+                        {
+                            gantiGiliran(pemain2)
+                            pemain = pemain2
+                            tick = 4
+                            progressBarWaktu.setProgress(100)
+                            countGachaAntiCurang.start()
+                        }
+                        else
+                        {
+                            gantiGiliran(pemain1)
+                            pemain = pemain1
+                            tick = 4
+                            progressBarWaktu.setProgress(100)
+                            countGachaAntiCurang.start()
+                        }
+                    }
+                    else
+                    {
+                        buttonGacha.isEnabled = false
+                        buttonGuess.isEnabled = true
+                        editTextTebak.isEnabled = true
+
+                        tick = 11
+                        progressBarWaktu.setProgress(100)
+                        countTebak = object : CountDownTimer(10000,1000){
+                            override fun onTick(p0: Long) {
+
+                            }
+                            override fun onFinish() {
+
+                            }
+                        }.start()
+                    }
+                }
+            }.start()
+        }
     }
 }
