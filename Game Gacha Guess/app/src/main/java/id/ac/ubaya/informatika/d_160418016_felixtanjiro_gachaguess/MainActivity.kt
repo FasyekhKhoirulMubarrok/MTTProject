@@ -24,5 +24,69 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        buttonGuess.setOnClickListener {
+            countTebak.cancel()
+
+            if(editTextTebak.text.isNotEmpty())
+            {
+                var guessText = editTextTebak.text.toString().toCharArray()
+
+                tebakanBenar = 0
+                for (i in 0 until tampilJawaban.size) {
+                    if (guessText[0] == tampilJawaban[i] && cekJawaban[i] != guessText[0] ) {
+                        cekJawaban[i] =  tampilJawaban[i]
+                        tebakanBenar++
+                    } else {
+                        if (tampilJawaban[i] != cekJawaban[i]) {
+                            cekJawaban[i] = "_".single()
+                        }
+                    }
+                }
+
+                if(tebakanBenar > 0)
+                {
+                    pemain.skor += tebakanBenar*skorGacha
+                    textViewScore.text = pemain.skor.toString()
+                    textViewKondisi.text = "Benar! Gacha lagi!"
+
+                    var jawabanTerbaru = ""
+                    for(i in 0 until cekJawaban.size)
+                    {
+                        jawabanTerbaru += (cekJawaban[i] + " ").capitalize()
+                    }
+                    textViewJawaban.text = jawabanTerbaru
+
+                    editTextTebak.isEnabled = false
+                    buttonGuess.isEnabled = false
+                    buttonGacha.isEnabled = true
+
+                    if(textViewJawaban.text.equals(pertanyaan[random].jawaban.toCharArray().joinToString(separator = " ").toUpperCase() + " ")){
+                        val builder = AlertDialog.Builder(this)
+                        builder.setMessage("Permainan berakhir!")
+
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.setCancelable(true)
+                        alertDialog.show()
+                    }
+                    else
+                    {
+                        tick = 4
+                        progressBarWaktu.setProgress(100)
+                        countGachaAntiCurang.start()
+                    }
+                }
+                else
+                {
+                    textViewKondisi.text = "Salah! Ganti giliran!"
+                    editTextTebak.isEnabled = false
+                    buttonGuess.isEnabled = false
+                    buttonGacha.isEnabled = true
+                }
+            }
+            else
+            {
+                Toast.makeText(this, "Masukkan Jawaban Terlebih Dahulu", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
