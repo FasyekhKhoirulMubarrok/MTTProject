@@ -25,4 +25,32 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
     }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Yakin mau keluar? Kamu otomatis kalah lho!")
+
+        builder.setPositiveButton("KELUAR"){dialogInterface, i ->
+            if(pemain == pemain1)
+            {
+                pemain = pemain2
+            }
+            else if(pemain == pemain2)
+            {
+                pemain = pemain1
+            }
+
+            val pemenang = Intent(this, PemenangActivity::class.java)
+            pemenang.putExtra(nama, pemain.nama.toString())
+            pemenang.putExtra(skor, pemain.skor.toString())
+            startActivity(pemenang)
+            finish()
+        }
+        builder.setNegativeButton("BATAL"){dialogInterface, i -> null }
+
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(true)
+        alertDialog.show()
+    }
+
 }
