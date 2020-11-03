@@ -97,6 +97,23 @@ class MainActivity : AppCompatActivity() {
                     editTextTebak.isEnabled = false
                     buttonGuess.isEnabled = false
                     buttonGacha.isEnabled = true
+
+                    if(pemain == pemain1)
+                    {
+                        gantiGiliran(pemain2)
+                        pemain = pemain2
+                        tick = 4
+                        progressBarWaktu.setProgress(100)
+                        countGachaAntiCurang.start()
+                    }
+                    else
+                    {
+                        gantiGiliran(pemain1)
+                        pemain = pemain1
+                        tick = 4
+                        progressBarWaktu.setProgress(100)
+                        countGachaAntiCurang.start()
+                    }
                 }
             }
             else
