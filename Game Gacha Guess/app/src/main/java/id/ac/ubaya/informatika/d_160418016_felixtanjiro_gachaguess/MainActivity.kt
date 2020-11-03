@@ -291,30 +291,28 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    fun gantiGiliran(giliran: Pemain){
+    fun gantiGiliran(giliran: Pemain) {
         textViewGiliran.text = giliran.nama
         textViewScore.text = giliran.skor.toString()
         progressBarWaktu.setProgress(100)
         textViewWaktu.text = 10.toString()
         editTextTebak.setText("")
-
+    }
     fun kumpulanSoal(kategori:String): Array<Soal> {
-        val kumpulanPertanyaan:Array<Soal>
-        if(kategori == "Hewan"){
+        val kumpulanPertanyaan: Array<Soal>
+        if (kategori == "Hewan") {
             kumpulanPertanyaan = arrayOf(
                 Soal("Hewan yang memiliki belalai", "gajah"),
                 Soal("Hewan yang bernafas menggunakan insang", "ikan"),
                 Soal("Hewan yang tidur di siang hari", "kelelawar")
             )
-        }
-        else if(kategori == "Makanan"){
+        } else if (kategori == "Makanan") {
             kumpulanPertanyaan = arrayOf(
                 Soal("Makanan khas lebaran", "ketupat"),
                 Soal("Makanan yang bisa jadi ironman", "odading"),
                 Soal("Makanan yang dipercaya bikin panjang umur", "mie")
             )
-        }
-        else{
+        } else {
             kumpulanPertanyaan = arrayOf(
                 Soal("Sebutan untuk kota pahlawan", "surabaya"),
                 Soal("Sebutan untuk kota lautan api", "bandung"),
@@ -322,7 +320,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         return kumpulanPertanyaan
-
+    }
     fun skorGachaFun(idx: Int) {
         if (idx in 2 until 7) {
             skorGacha = 100
