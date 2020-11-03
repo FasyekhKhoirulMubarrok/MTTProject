@@ -298,5 +298,32 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Masukkan Jawaban Terlebih Dahulu", Toast.LENGTH_SHORT).show()
             }
         }
+
+        pemain1 = Pemain(intent.getStringExtra(PemainActivity.pemain1).toString(), skorPemain1)
+        pemain2 = Pemain(intent.getStringExtra(PemainActivity.pemain2).toString(),skorPemain2)
+        tipeSoal = intent.getStringExtra(PemainActivity.tipeSoal).toString()
+        textViewKategori.text = tipeSoal
+
+        pemain = pemain1
+        gantiGiliran(pemain1)
+
+        val pertanyaan = kumpulanSoal(tipeSoal)
+        random = Random.nextInt(0,pertanyaan.count())
+        textViewHint.text = pertanyaan[random].soal
+
+        val totalKarakter = pertanyaan[random].jawaban.indices
+        for(i in totalKarakter)
+        {
+            garisBantuJawaban += "_ "
+        }
+        textViewJawaban.text = garisBantuJawaban
+
+        var cekJawaban = CharArray(pertanyaan[random].jawaban.toCharArray().size)
+        var tampilJawaban = pertanyaan[random].jawaban.toCharArray().joinToString(separator = "").toCharArray()
+
+        imageViewNilai.setImageResource(gambarSkorGacha[0])
+
+        editTextTebak.isEnabled = false;
+        buttonGuess.isEnabled = false;
     }
 }
