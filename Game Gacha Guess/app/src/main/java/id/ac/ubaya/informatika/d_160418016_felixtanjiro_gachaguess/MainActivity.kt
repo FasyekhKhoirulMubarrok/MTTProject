@@ -69,10 +69,34 @@ class MainActivity : AppCompatActivity() {
                         progressBarWaktu.setProgress(100)
                         countTebak = object : CountDownTimer(10000,1000){
                             override fun onTick(p0: Long) {
-
+                                textViewKondisi.text = "Jawab sekarang!"
+                                tick--
+                                textViewWaktu.text = tick.toString()
+                                progressBarWaktu.progress = tick.toInt()*10
                             }
                             override fun onFinish() {
+                                textViewWaktu.text = "Waktu habis!"
+                                textViewKondisi.text = "Waktu habis!"
+                                editTextTebak.isEnabled = false
+                                buttonGuess.isEnabled = false
+                                buttonGacha.isEnabled = true
+                                if(pemain == pemain1)
+                                {
+                                    gantiGiliran(pemain2)
+                                    pemain = pemain2
 
+                                    tick = 4
+                                    progressBarWaktu.setProgress(100)
+                                    countGachaAntiCurang.start()
+                                }
+                                else
+                                {
+                                    gantiGiliran(pemain1)
+                                    pemain = pemain1
+                                    tick = 4
+                                    progressBarWaktu.setProgress(100)
+                                    countGachaAntiCurang.start()
+                                }
                             }
                         }.start()
                     }
