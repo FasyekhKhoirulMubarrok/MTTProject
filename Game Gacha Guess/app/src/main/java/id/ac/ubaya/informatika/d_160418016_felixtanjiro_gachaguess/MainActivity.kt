@@ -64,6 +64,22 @@ class MainActivity : AppCompatActivity() {
                         val builder = AlertDialog.Builder(this)
                         builder.setMessage("Permainan berakhir!")
 
+                        builder.setPositiveButton("HORE!"){dialogInterface, i ->
+                            if (pemain1.skor == pemain2.skor) {
+                                pemain.nama = "Tidak ada!"
+                            } else if (pemain1.skor > pemain2.skor) {
+                                pemain = pemain1
+                            } else if (pemain1.skor < pemain2.skor) {
+                                pemain = pemain2
+                            }
+
+                            val pemenang = Intent(this, PemenangActivity::class.java)
+                            pemenang.putExtra(nama, pemain.nama.toString())
+                            pemenang.putExtra(skor, pemain.skor.toString())
+                            startActivity(pemenang)
+                            finish()
+                        }
+
                         val alertDialog: AlertDialog = builder.create()
                         alertDialog.setCancelable(true)
                         alertDialog.show()
