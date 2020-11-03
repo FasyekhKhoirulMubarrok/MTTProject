@@ -38,6 +38,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        pemain1 = Pemain(intent.getStringExtra(PemainActivity.pemain1).toString(), skorPemain1)
+        pemain2 = Pemain(intent.getStringExtra(PemainActivity.pemain2).toString(),skorPemain2)
+        tipeSoal = intent.getStringExtra(PemainActivity.tipeSoal).toString()
+        textViewKategori.text = tipeSoal
+
+        pemain = pemain1
+        gantiGiliran(pemain1)
+
+        val pertanyaan = kumpulanSoal(tipeSoal)
+        random = Random.nextInt(0,pertanyaan.count())
+        textViewHint.text = pertanyaan[random].soal
+
+        val totalKarakter = pertanyaan[random].jawaban.indices
+        for(i in totalKarakter)
+        {
+            garisBantuJawaban += "_ "
+        }
+        textViewJawaban.text = garisBantuJawaban
+
+        var cekJawaban = CharArray(pertanyaan[random].jawaban.toCharArray().size)
+        var tampilJawaban = pertanyaan[random].jawaban.toCharArray().joinToString(separator = "").toCharArray()
+
+        imageViewNilai.setImageResource(gambarSkorGacha[0])
+
+        editTextTebak.isEnabled = false;
+        buttonGuess.isEnabled = false;
+
         buttonGacha.setOnClickListener {
             countGachaAntiCurang.cancel()
             editTextTebak.setText("")
@@ -116,89 +143,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.start()
-        }
-    }
-
-    override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("Yakin mau keluar? Kamu otomatis kalah lho!")
-
-        builder.setPositiveButton("KELUAR"){dialogInterface, i ->
-            if(pemain == pemain1)
-            {
-                pemain = pemain2
-            }
-            else if(pemain == pemain2)
-            {
-                pemain = pemain1
-            }
-
-            val pemenang = Intent(this, PemenangActivity::class.java)
-            pemenang.putExtra(nama, pemain.nama.toString())
-            pemenang.putExtra(skor, pemain.skor.toString())
-            startActivity(pemenang)
-            finish()
-        }
-        builder.setNegativeButton("BATAL"){dialogInterface, i -> null }
-
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.setCancelable(true)
-        alertDialog.show()
-    }
-
-    fun gantiGiliran(giliran: Pemain){
-        textViewGiliran.text = giliran.nama
-        textViewScore.text = giliran.skor.toString()
-        progressBarWaktu.setProgress(100)
-        textViewWaktu.text = 10.toString()
-        editTextTebak.setText("")
-
-    fun kumpulanSoal(kategori:String): Array<Soal> {
-        val kumpulanPertanyaan:Array<Soal>
-        if(kategori == "Hewan"){
-            kumpulanPertanyaan = arrayOf(
-                Soal("Hewan yang memiliki belalai", "gajah"),
-                Soal("Hewan yang bernafas menggunakan insang", "ikan"),
-                Soal("Hewan yang tidur di siang hari", "kelelawar")
-            )
-        }
-        else if(kategori == "Makanan"){
-            kumpulanPertanyaan = arrayOf(
-                Soal("Makanan khas lebaran", "ketupat"),
-                Soal("Makanan yang bisa jadi ironman", "odading"),
-                Soal("Makanan yang dipercaya bikin panjang umur", "mie")
-            )
-        }
-        else{
-            kumpulanPertanyaan = arrayOf(
-                Soal("Sebutan untuk kota pahlawan", "surabaya"),
-                Soal("Sebutan untuk kota lautan api", "bandung"),
-                Soal("Ibukota negara Indonesia", "jakarta")
-            )
-        }
-        return kumpulanPertanyaan
-
-    fun skorGachaFun(idx: Int)
-    {
-        if(idx in 2 until 7)
-        {
-            skorGacha = 100
-        }
-        else if(idx in 7 until 11)
-        {
-            skorGacha = 200
-        }
-        else if(idx in 11 until 14)
-        {
-            skorGacha = 500
-        }
-        else if(idx in 14 until 16)
-        {
-            skorGacha = 1000
-        }
-        else if(idx == 16)
-        {
-            skorGacha = 2500
         }
 
         buttonGuess.setOnClickListener {
@@ -298,32 +242,78 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Masukkan Jawaban Terlebih Dahulu", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
-        pemain1 = Pemain(intent.getStringExtra(PemainActivity.pemain1).toString(), skorPemain1)
-        pemain2 = Pemain(intent.getStringExtra(PemainActivity.pemain2).toString(),skorPemain2)
-        tipeSoal = intent.getStringExtra(PemainActivity.tipeSoal).toString()
-        textViewKategori.text = tipeSoal
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Yakin mau keluar? Kamu otomatis kalah lho!")
 
-        pemain = pemain1
-        gantiGiliran(pemain1)
+        builder.setPositiveButton("KELUAR"){dialogInterface, i ->
+            if(pemain == pemain1)
+            {
+                pemain = pemain2
+            }
+            else if(pemain == pemain2)
+            {
+                pemain = pemain1
+            }
 
-        val pertanyaan = kumpulanSoal(tipeSoal)
-        random = Random.nextInt(0,pertanyaan.count())
-        textViewHint.text = pertanyaan[random].soal
-
-        val totalKarakter = pertanyaan[random].jawaban.indices
-        for(i in totalKarakter)
-        {
-            garisBantuJawaban += "_ "
+            val pemenang = Intent(this, PemenangActivity::class.java)
+            pemenang.putExtra(nama, pemain.nama.toString())
+            pemenang.putExtra(skor, pemain.skor.toString())
+            startActivity(pemenang)
+            finish()
         }
-        textViewJawaban.text = garisBantuJawaban
+        builder.setNegativeButton("BATAL"){dialogInterface, i -> null }
 
-        var cekJawaban = CharArray(pertanyaan[random].jawaban.toCharArray().size)
-        var tampilJawaban = pertanyaan[random].jawaban.toCharArray().joinToString(separator = "").toCharArray()
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(true)
+        alertDialog.show()
+    }
 
-        imageViewNilai.setImageResource(gambarSkorGacha[0])
+    fun gantiGiliran(giliran: Pemain){
+        textViewGiliran.text = giliran.nama
+        textViewScore.text = giliran.skor.toString()
+        progressBarWaktu.setProgress(100)
+        textViewWaktu.text = 10.toString()
+        editTextTebak.setText("")
 
-        editTextTebak.isEnabled = false;
-        buttonGuess.isEnabled = false;
+    fun kumpulanSoal(kategori:String): Array<Soal> {
+        val kumpulanPertanyaan:Array<Soal>
+        if(kategori == "Hewan"){
+            kumpulanPertanyaan = arrayOf(
+                Soal("Hewan yang memiliki belalai", "gajah"),
+                Soal("Hewan yang bernafas menggunakan insang", "ikan"),
+                Soal("Hewan yang tidur di siang hari", "kelelawar")
+            )
+        }
+        else if(kategori == "Makanan"){
+            kumpulanPertanyaan = arrayOf(
+                Soal("Makanan khas lebaran", "ketupat"),
+                Soal("Makanan yang bisa jadi ironman", "odading"),
+                Soal("Makanan yang dipercaya bikin panjang umur", "mie")
+            )
+        }
+        else{
+            kumpulanPertanyaan = arrayOf(
+                Soal("Sebutan untuk kota pahlawan", "surabaya"),
+                Soal("Sebutan untuk kota lautan api", "bandung"),
+                Soal("Ibukota negara Indonesia", "jakarta")
+            )
+        }
+        return kumpulanPertanyaan
+
+    fun skorGachaFun(idx: Int) {
+        if (idx in 2 until 7) {
+            skorGacha = 100
+        } else if (idx in 7 until 11) {
+            skorGacha = 200
+        } else if (idx in 11 until 14) {
+            skorGacha = 500
+        } else if (idx in 14 until 16) {
+            skorGacha = 1000
+        } else if (idx == 16) {
+            skorGacha = 2500
+        }
     }
 }
