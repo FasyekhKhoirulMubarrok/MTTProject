@@ -36,7 +36,8 @@ class PemainActivity : AppCompatActivity() {
                 finish()
 
                 var q = Volley.newRequestQueue(this)
-                val url = "http://10.0.2.2/mtt/addPlayer.php"
+                val url = "http://ubaya.prototipe.net/nmp160418024/addPlayer.php"
+
                 var stringRequest = object: StringRequest(com.android.volley.Request.Method.POST, url,
                     {
                         Log.d("insert",it)
