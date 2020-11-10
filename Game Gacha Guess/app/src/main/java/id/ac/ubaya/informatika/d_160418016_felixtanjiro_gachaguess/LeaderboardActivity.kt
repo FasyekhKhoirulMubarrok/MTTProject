@@ -17,18 +17,20 @@ class LeaderboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
         Bacadata()
-        txtPemain1.text = leaderboards[0].Pemain
-        txtPemain2.text = leaderboards[1].Pemain
-        txtPemain3.text = leaderboards[2].Pemain
-        txtPemain4.text = leaderboards[3].Pemain
-        txtPemain5.text = leaderboards[4].Pemain
+        if(leaderboards.size >0) {
+            txtPemain1.text = leaderboards[0].Pemain
+            txtPemain2.text = leaderboards[1].Pemain
+            txtPemain3.text = leaderboards[2].Pemain
+            txtPemain4.text = leaderboards[3].Pemain
+            txtPemain5.text = leaderboards[4].Pemain
 
-        skor1.text = leaderboards[0].Skor
-        skor2.text = leaderboards[1].Skor
-        skor3.text = leaderboards[2].Skor
-        skor4.text = leaderboards[3].Skor
-        skor5.text = leaderboards[4].Skor
-
+            skor1.text = leaderboards[0].Skor.toString()
+            skor2.text = leaderboards[1].Skor.toString()
+            skor3.text = leaderboards[2].Skor.toString()
+            skor4.text = leaderboards[3].Skor.toString()
+            skor5.text = leaderboards[4].Skor.toString()
+        }
+        System.out.println(leaderboards.size)
         btnBack.setOnClickListener {
             val pemenang = Intent(this, PemainActivity::class.java)
             startActivity(pemenang)
@@ -50,7 +52,7 @@ class LeaderboardActivity : AppCompatActivity() {
                         val playlist = Leaderboard(
                             playObj.getInt("id"),
                             playObj.getString("namaPemenang"),
-                            playObj.getString("skor")
+                            playObj.getInt("skor")
                         )
                         leaderboards.add(playlist)
                     }
