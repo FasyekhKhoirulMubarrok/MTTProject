@@ -52,8 +52,7 @@ class MainActivity : AppCompatActivity() {
     var skorGacha = 0
     lateinit var countTebak : CountDownTimer
     lateinit var countGachaAntiCurang : CountDownTimer
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -84,6 +83,36 @@ class MainActivity : AppCompatActivity() {
 
         editTextTebak.isEnabled = false;
         buttonGuess.isEnabled = false;
+
+        tick = 4
+        progressBarWaktu.setProgress(100)
+        countGachaAntiCurang = object: CountDownTimer(3000,1000){
+            override fun onTick(p0: Long) {
+                textViewKondisi.text = "Gacha dulu!"
+                tick--
+                textViewWaktu.text = tick.toString()
+            }
+            override fun onFinish() {
+                textViewWaktu.text = "Waktu habis!"
+                textViewKondisi.text = "Waktu habis!"
+                if(pemain == pemain1)
+                {
+                    gantiGiliran(pemain2)
+                    pemain = pemain2
+                    tick = 4
+                    progressBarWaktu.setProgress(100)
+                    countGachaAntiCurang.start()
+                }
+                else
+                {
+                    gantiGiliran(pemain1)
+                    pemain = pemain1
+                    tick = 4
+                    progressBarWaktu.setProgress(100)
+                    countGachaAntiCurang.start()
+                }
+            }
+        }.start()
 
         buttonGacha.setOnClickListener {
             countGachaAntiCurang.cancel()
@@ -291,7 +320,8 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    fun gantiGiliran(giliran: Pemain) {
+    fun gantiGiliran(giliran: Pemain)
+    {
         textViewGiliran.text = giliran.nama
         textViewScore.text = giliran.skor.toString()
         progressBarWaktu.setProgress(100)
@@ -321,16 +351,26 @@ class MainActivity : AppCompatActivity() {
         }
         return kumpulanPertanyaan
     }
-    fun skorGachaFun(idx: Int) {
-        if (idx in 2 until 7) {
+    fun skorGachaFun(idx: Int)
+    {
+        if (idx in 2 until 7)
+        {
             skorGacha = 100
-        } else if (idx in 7 until 11) {
+        }
+        else if (idx in 7 until 11)
+        {
             skorGacha = 200
-        } else if (idx in 11 until 14) {
+        }
+        else if (idx in 11 until 14)
+        {
             skorGacha = 500
-        } else if (idx in 14 until 16) {
+        }
+        else if (idx in 14 until 16)
+        {
             skorGacha = 1000
-        } else if (idx == 16) {
+        }
+        else if (idx == 16)
+        {
             skorGacha = 2500
         }
     }
