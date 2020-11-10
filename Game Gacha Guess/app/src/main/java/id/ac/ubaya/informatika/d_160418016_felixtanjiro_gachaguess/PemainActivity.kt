@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_leaderboard.*
 import kotlinx.android.synthetic.main.activity_pemain.*
 
 class PemainActivity : AppCompatActivity() {
@@ -60,6 +61,11 @@ class PemainActivity : AppCompatActivity() {
             {
                 Toast.makeText(this, "Masukkan Nama Pemain Terlebih Dahulu", Toast.LENGTH_SHORT).show()
             }
+        }
+        btnLeader.setOnClickListener {
+            val pemenang = Intent(this, LeaderboardActivity::class.java)
+            startActivity(pemenang)
+            finish()
         }
     }
 }
