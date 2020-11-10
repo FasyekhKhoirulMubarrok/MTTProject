@@ -16,26 +16,31 @@ class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
-        Bacadata()
-        if(leaderboards.size >0) {
-            txtPemain1.text = leaderboards[0].Pemain
-            txtPemain2.text = leaderboards[1].Pemain
-            txtPemain3.text = leaderboards[2].Pemain
-            txtPemain4.text = leaderboards[3].Pemain
-            txtPemain5.text = leaderboards[4].Pemain
 
-            skor1.text = leaderboards[0].Skor.toString()
-            skor2.text = leaderboards[1].Skor.toString()
-            skor3.text = leaderboards[2].Skor.toString()
-            skor4.text = leaderboards[3].Skor.toString()
-            skor5.text = leaderboards[4].Skor.toString()
+        btnLead.setOnClickListener {
+            Bacadata()
+            if(leaderboards.size >0) {
+                txtPemain1.text = leaderboards[0].Pemain
+                txtPemain2.text = leaderboards[1].Pemain
+                txtPemain3.text = leaderboards[2].Pemain
+                txtPemain4.text = leaderboards[3].Pemain
+                txtPemain5.text = leaderboards[4].Pemain
+
+                skor1.text = leaderboards[0].Skor.toString()
+                skor2.text = leaderboards[1].Skor.toString()
+                skor3.text = leaderboards[2].Skor.toString()
+                skor4.text = leaderboards[3].Skor.toString()
+                skor5.text = leaderboards[4].Skor.toString()
+            }
+            System.out.println(leaderboards.size)
         }
-        System.out.println(leaderboards.size)
+
         btnBack.setOnClickListener {
             val pemenang = Intent(this, PemainActivity::class.java)
             startActivity(pemenang)
             finish()
         }
+
     }
     fun Bacadata(){
         val q = Volley.newRequestQueue(this)
