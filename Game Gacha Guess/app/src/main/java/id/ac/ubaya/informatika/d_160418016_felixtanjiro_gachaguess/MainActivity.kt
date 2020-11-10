@@ -5,8 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
@@ -248,6 +251,25 @@ class MainActivity : AppCompatActivity() {
                             pemenang.putExtra(skor, pemain.skor.toString())
                             startActivity(pemenang)
                             finish()
+
+                            var q = Volley.newRequestQueue(this)
+                            val url = "http://10.0.2.2/mtt/addPemenang.php"
+                            var stringRequest = object: StringRequest(com.android.volley.Request.Method.POST, url,
+                                {
+                                    Log.d("insert",it)
+                                },
+                                {
+                                    Log.d("insert",it.message.toString())
+                                }
+                            ){
+                                override  fun  getParams(): MutableMap<String,String>{
+                                    var params = HashMap<String,String>()
+                                    params.put("namapemenang",pemain.nama.toString())
+                                    params.put("skor",pemain.skor.toString())
+                                    return  params
+                                }
+                            }
+                            q.add(stringRequest)
                         }
 
                         val alertDialog: AlertDialog = builder.create()
@@ -312,6 +334,25 @@ class MainActivity : AppCompatActivity() {
             pemenang.putExtra(skor, pemain.skor.toString())
             startActivity(pemenang)
             finish()
+
+            var q = Volley.newRequestQueue(this)
+            val url = "http://10.0.2.2/mtt/addPemenang.php"
+            var stringRequest = object: StringRequest(com.android.volley.Request.Method.POST, url,
+                {
+                    Log.d("insert",it)
+                },
+                {
+                    Log.d("insert",it.message.toString())
+                }
+            ){
+                override  fun  getParams(): MutableMap<String,String>{
+                    var params = HashMap<String,String>()
+                    params.put("namapemenang",pemain.nama.toString())
+                    params.put("skor",pemain.skor.toString())
+                    return  params
+                }
+            }
+            q.add(stringRequest)
         }
         builder.setNegativeButton("BATAL"){dialogInterface, i -> null }
 
