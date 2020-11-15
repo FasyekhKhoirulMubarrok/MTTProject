@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
                             finish()
 
                             var q = Volley.newRequestQueue(this)
-                            val url = "http://ubaya.prototipe.net/nmp160418024/addPemenang.php"
+                            val url = "http://ubaya.prototipe.net/nmp160418016/addPemenang.php"
                             var stringRequest = object: StringRequest(com.android.volley.Request.Method.POST, url,
                                 {
                                     Log.d("insert",it)
@@ -336,7 +336,7 @@ class MainActivity : AppCompatActivity() {
             finish()
 
             var q = Volley.newRequestQueue(this)
-            val url = "http://ubaya.prototipe.net/nmp160418024/addPemenang.php"
+            val url = "http://ubaya.prototipe.net/nmp160418016/addPemenang.php"
             var stringRequest = object: StringRequest(com.android.volley.Request.Method.POST, url,
                 {
                     Log.d("insert",it)
