@@ -44,7 +44,7 @@ class LeaderboardActivity : AppCompatActivity() {
     }
     fun Bacadata(){
         val q = Volley.newRequestQueue(this)
-        val url = "http://ubaya.prototipe.net/nmp160418024/getPemenang.php"
+        val url = "http://ubaya.prototipe.net/nmp160418016/getPemenang.php"
         var stringRequest = StringRequest(
             Request.Method.POST, url,
             Response.Listener<String> {
